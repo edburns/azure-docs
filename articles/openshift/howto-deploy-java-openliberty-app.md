@@ -11,22 +11,22 @@ keywords: java, jakartaee, javaee, microprofile, open-liberty, aro, openshift, r
 
 # Deploy a Java application with Open Liberty on an Azure Red Hat OpenShift 4 cluster
 
-This guide demonstrates how to run your Java, Java EE, [Jakarta EE](https://jakarta.ee/), or [MicroProfile](https://microprofile.io/) application on the Open Liberty runtime and then deploy the containerized application to an Azure Red Hat OpenShift (ARO) 4 cluster using the Open Liberty Operator. This article will walk you through preparing an Open Liberty application, building the application Docker image and running the containerized application on an ARO 4 cluster.  The foundational elements of technology in this article include the following.
+This guide demonstrates how to run your Java, Java EE, [Jakarta EE](https://jakarta.ee/), or [MicroProfile](https://microprofile.io/) application on the Open Liberty runtime and then deploy the containerized application to an Azure Red Hat OpenShift (ARO) 4 cluster using the Open Liberty Operator. This article will walk you through preparing an Open Liberty application, building the application Docker image and running the containerized application on an ARO 4 cluster.  The foundational elements of technology in this article include the following:
 
 * [Open Liberty](https://openliberty.io): Open Liberty is an IBM Open Source project that implements the Eclipse MicroProfile specifications and is also Java/Jakarta EE compatible. Open Liberty is fast to start up with a low memory footprint and supports live reloading for quick iterative development. It is simple to add and remove features from the latest versions of MicroProfile and Java/Jakarta EE. Zero migration lets you focus on what's important, not the APIs changing under you.
 * [Azure Red Hat OpenShift](https://azure.microsoft.com/services/openshift/): Azure Red Hat OpenShift provides a flexible, self-service deployment of fully managed OpenShift clusters. Maintain regulatory compliance and focus on your application development, while your master, infrastructure, and application nodes are patched, updated, and monitored by both Microsoft and Red Hat.
 
 ## Prerequisites
 
-Finish the following prerequisites to successfully walk through this guide.
+Complete the following prerequisites to successfully walk through this guide.
 
 <!-- IMPORTANT: find a way to capture this activation action to count against our OKRs.  DO NOT PUBLISH without this. -->
-1. Install a Java SE implementation per your needs (for example, [AdoptOpenJDK OpenJDK 8 LTS/OpenJ9](https://adoptopenjdk.net/?variant=openjdk8&jvmVariant=openj9)).
+1. Install a Java SE implementation (for example, [AdoptOpenJDK OpenJDK 8 LTS/OpenJ9](https://adoptopenjdk.net/?variant=openjdk8&jvmVariant=openj9)).
 2. Install [Maven](https://maven.apache.org/download.cgi) 3.5.0 or higher.
 3. Install [Docker](https://docs.docker.com/get-docker/) for your OS.
 4. Register a [Docker Hub](https://id.docker.com/) account.
 5. Install [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest) 2.0.75 or later.
-6. Register an Azure subscription. If you don't have one, you can get one for free for one year [here](https://azure.microsoft.com/free).
+6. Register an Azure subscription. If you don't have one, you can get an [Azure subscription free for one year](https://azure.microsoft.com/free).
 7. Clone [this repository](https://github.com/Azure-Samples/open-liberty-on-aro) to your local file system.
 
 ## Set up Azure Red Hat OpenShift cluster
@@ -35,7 +35,7 @@ Follow the instructions in these two tutorials and then return here to continue.
 
 1. Create the cluster by following the steps in [Create an Azure Red Hat OpenShift 4 cluster](/azure/openshift/tutorial-create-cluster).  
    > [!NOTE]
-   > Though the "Get a Red Hat pull secret" step is labeled as optional, **it is required for this article**.  The pull secret enables your Azure Red Hat OpenShift cluster to find the Open Liberty operator.
+   > Though the "Get a Red Hat pull secret" step is labeled as optional, **it is required for this article**.  The pull secret enables your Azure Red Hat OpenShift cluster to find the Open Liberty Operator.
    >
    > If you plan to run memory-intensive applications on the cluster, specify the proper virtual machine size for the worker nodes using the `--worker-vm-size` parameter. For example, `Standard_E4s_v3` is the minimum virtual machine size to install the Elasticsearch Operator on a cluster. Refer to the following for further details:
    > * [Azure CLI to create a cluster](https://docs.microsoft.com/cli/azure/aro?view=azure-cli-latest#az-aro-create)
@@ -44,7 +44,7 @@ Follow the instructions in these two tutorials and then return here to continue.
 
 2. Connect to the cluster by following the steps in [Connect to an Azure Red Hat OpenShift 4 cluster](/azure/openshift/tutorial-connect-cluster).  Be sure to follow the steps in "Install the OpenShift CLI" because we will use the `oc` command later in this article.
 
-## Install the Open Liberty Open Shift Operator
+## Install the Open Liberty OpenShift Operator
 
 After creating and connecting to the cluster, install the [Open Liberty Operator](https://github.com/OpenLiberty/open-liberty-operator).
 
