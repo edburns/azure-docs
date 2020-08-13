@@ -62,7 +62,7 @@ After creating and connecting to the cluster, install the [Open Liberty Operator
 
 We will use a Java EE 8 application as our example in this guide. Open Liberty is a [Java EE 8 full profile](https://javaee.github.io/javaee-spec/javadocs/) compatible server, so it can easily run the application.  Open Liberty is also [Jakarta EE 8 full profile compatible](https://jakarta.ee/specifications/platform/8/apidocs/).  If you already have a Java EE, Jakarta EE or MicroProfile application running on an existing server (for example, IBM WebSphere Application Server, Oracle WebLogic Server, WildFly, JBoss EAP, and so on), only minimal changes should be necessary to make the application run on Liberty runtime.
 
-### Sample Application
+### Sample application
 
 Within the git repo you cloned in the Prerequisites section, change directory to `1-start`. The sample application uses Maven at build time and only Java EE 8 APIs (JAX-RS, EJB, CDI, JSON-B, JSF, Bean Validation) at runtime. This standard Java EE app will be used as a starting point to demonstrate the ease of migration to Liberty runtime. Here is the project structure:
 
