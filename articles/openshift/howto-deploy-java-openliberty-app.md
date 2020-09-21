@@ -52,22 +52,25 @@ Follow the instructions in these two tutorials and then return here to continue.
    > * Write down the cluster console URL which looks like `https://console-openshift-console.apps.<random>.<region>.aroapp.io/`.
    > * Write down the `kubeadmin` credentials.
 
-   You will need to log in to the OpenShift CLI with the token retrieved from the web console later:
+Then verify you can log in to the OpenShift CLI with the token for user `kubeadmin`.
 
-   1. Log in to the OpenShift web console from your browser using the specific user credentials.
-   2. At the right-top of the web console, expand the context menu of the logged-in user, then click "Copy Login Command".
-   3. Log in to a new tab window with the same user if necessary.
-   4. Select "Display Token".
-   5. Copy the value listed below "Log in with this token" to the clipboard and run it in a shell, as shown here.
+#### Log in to the OpenShift CLI with the token
 
-      ```bash
-      oc login --token=XOdASlzeT7BHT0JZW6Fd4dl5EwHpeBlN27TAdWHseob --server=https://api.aqlm62xm.rnfghf.aroapp.io:6443
-      Logged into "https://api.aqlm62xm.rnfghf.aroapp.io:6443" as "kube:admin" using the token provided.
+Before executing the following steps, be sure to log in to the OpenShift web console from your browser.
 
-      You have access to 57 projects, the list has been suppressed. You can list all projects with 'oc projects'
+1. At the right-top of the web console, expand the context menu of the logged-in user, then click "Copy Login Command".
+2. Log in to a new tab window with the same user if necessary.
+3. Select "Display Token".
+4. Copy the value listed below "Log in with this token" to the clipboard and run it in a shell, as shown here.
 
-      Using project "default".
-      ```
+   ```bash
+   oc login --token=XOdASlzeT7BHT0JZW6Fd4dl5EwHpeBlN27TAdWHseob --server=https://api.aqlm62xm.rnfghf.aroapp.io:6443
+   Logged into "https://api.aqlm62xm.rnfghf.aroapp.io:6443" as "kube:admin" using the token provided.
+
+   You have access to 57 projects, the list has been suppressed. You can list all projects with 'oc projects'
+
+   Using project "default".
+   ```
 
 ### Set up Azure Active Directory
 
@@ -92,12 +95,14 @@ To access the built-in container image registry provided by the ARO 4 cluster, a
 
 OpenShift Container Platform provides a built-in container image registry which runs as a standard workload on the ARO 4 cluster. The registry provides an out of the box solution for users to manage the images that run their workloads, and runs on top of the existing cluster infrastructure. Follow the instructions below to enable the access of the built-in registry.
 
-1. Log in to the OpenShift CLI using the token retrieved from the web console with a user from Azure AD.
+1. Log in to the OpenShift web console from your browser using the credentials of an Azure AD user.
    > [!NOTE]
    > Write down the user name and password for this Azure AD user, as it will be used as **the administrator** for the demo project throughout this guide and subsequent ones.
-2. Run `oc whoami` in the console and write down its output as **\<aad-user>**.
-3. Log in to the OpenShift CLI using the token retrieved from the web console with the `kubeadmin` credentials.
-4. Execute the following commands to enable the access to the built-in registry for the **aad-user**.
+2. [Log in to the OpenShift CLI with the token](#log-in-to-the-openshift-cli-with-the-token).
+3. Run `oc whoami` in the console and write down its output as **\<aad-user>**.
+4. Log in to the OpenShift web console from your browser using the `kubeadmin` credentials.
+5. [Log in to the OpenShift CLI with the token](#log-in-to-the-openshift-cli-with-the-token).
+6. Execute the following commands to enable the access to the built-in registry for the **aad-user**.
 
    ```bash
    # Switch to project "openshift-image-registry"
@@ -126,7 +131,7 @@ Besides image management, the **aad-user** will also be granted administrative p
 
    ![create-namespace](./media/howto-deploy-java-openliberty-app/create-namespace.png)
 
-4. Log in to the OpenShift CLI with the token retrieved from the web console.
+4. [Log in to the OpenShift CLI with the token](#log-in-to-the-openshift-cli-with-the-token).
 5. Execute the following commands to grant `admin` role to the **aad-user** in namespace `open-liberty-demo`.
 
    ```bash
@@ -260,8 +265,9 @@ Before deploying the containerized application to a remote cluster, run with you
 
 When you're satisfied with the state of the application, push it to the built-in container image registry by following the instructions below:
 
-1. Log in to the OpenShift CLI using the token retrieved from the web console with the administrator.
-2. Execute the following commands to push the image:
+1. Log in to the OpenShift web console from your browser using the credentials of the administrator.
+2. [Log in to the OpenShift CLI with the token](#log-in-to-the-openshift-cli-with-the-token).
+3. Execute the following commands to push the image:
 
    ```bash
    # Note: replace "<Container_Registry_URL>" with the fully qualified name of the registry
@@ -285,7 +291,7 @@ Now you can deploy the sample Liberty application to the Azure Red Hat OpenShift
 
 Because we use the Open Liberty Operator to manage Liberty applications, we need to create an instance of its *Custom Resource Definition*, of type "OpenLibertyApplication". The Operator will then take care of all aspects of managing the OpenShift resources required for deployment.
 
-1. Log in to the OpenShift web console from your browser with the administrator.
+1. Log in to the OpenShift web console from your browser using the credentials of the administrator.
 2. Navigate to **Operators** > **Installed Operators** > **Open Liberty Operator** > **Open Liberty Application**.  The navigation of items in the user interface mirrors the actual containment hierarchy of technologies in use.
 
    ![ARO Java Containment](./media/howto-deploy-java-openliberty-app/aro-java-containment.png)
@@ -300,8 +306,9 @@ You'll see the application home page opened in the browser.
 
 Instead of using the web console GUI, you can deploy the application from the command-line. If you have not already done so, download and install the `oc` command-line tool by following Red Hat documentation [Getting Started with the CLI](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html).
 
-1. Log in to the OpenShift CLI using the token retrieved from the web console with the administrator.
-2. Change directory to `2-simple` of your local clone, and run the following commands to deploy your Liberty application to the ARO 4 cluster.
+1. Log in to the OpenShift web console from your browser using the credentials of the administrator.
+2. [Log in to the OpenShift CLI with the token](#log-in-to-the-openshift-cli-with-the-token).
+3. Change directory to `2-simple` of your local clone, and run the following commands to deploy your Liberty application to the ARO 4 cluster.
 
    ```bash
    # Switch to namespace "open-liberty-demo" where resources of demo app will belong to
@@ -327,8 +334,8 @@ Instead of using the web console GUI, you can deploy the application from the co
    javaee-cafe-simple   1/1     1            0           102s
    ```
 
-3. Check to see `1/1` under the `READY` column before you continue.  If not, investigate and resolve the problem before continuing.
-4. Discover the host of route to the application with the `oc get route` command, as shown here.
+4. Check to see `1/1` under the `READY` column before you continue.  If not, investigate and resolve the problem before continuing.
+5. Discover the host of route to the application with the `oc get route` command, as shown here.
 
    ```bash
    # Get host of the route
