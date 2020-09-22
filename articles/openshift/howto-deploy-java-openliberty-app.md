@@ -100,10 +100,10 @@ OpenShift Container Platform provides a built-in container image registry which 
 1. Log in to the OpenShift web console from your browser using the credentials of an Azure AD user.
    > [!NOTE]
    > Write down the user name and password for this Azure AD user, as it will be used as **the administrator** for the demo project throughout this guide and subsequent ones.
-2. [Log in to the OpenShift CLI with the token](#log-in-to-the-openshift-cli-with-the-token).
+2. [Log in to the OpenShift CLI with the token for this Azure AD user](#log-in-to-the-openshift-cli-with-the-token).
 3. Run `oc whoami` in the console and write down its output as **\<aad-user>**.
 4. Log in to the OpenShift web console from your browser using the `kubeadmin` credentials.
-5. [Log in to the OpenShift CLI with the token](#log-in-to-the-openshift-cli-with-the-token).
+5. [Log in to the OpenShift CLI with the token for `kubeadmin`](#log-in-to-the-openshift-cli-with-the-token).
 6. Execute the following commands to enable the access to the built-in registry for the **aad-user**.
 
    ```bash
@@ -133,7 +133,7 @@ Besides image management, the **aad-user** will also be granted administrative p
 
    ![create-namespace](./media/howto-deploy-java-openliberty-app/create-namespace.png)
 
-4. [Log in to the OpenShift CLI with the token](#log-in-to-the-openshift-cli-with-the-token).
+4. [Log in to the OpenShift CLI with the token for `kubeadmin`](#log-in-to-the-openshift-cli-with-the-token).
 5. Execute the following commands to grant `admin` role to the **aad-user** in namespace `open-liberty-demo`.
 
    ```bash
@@ -268,7 +268,7 @@ Before deploying the containerized application to a remote cluster, run with you
 When you're satisfied with the state of the application, push it to the built-in container image registry by following the instructions below:
 
 1. Log in to the OpenShift web console from your browser using the credentials of the administrator.
-2. [Log in to the OpenShift CLI with the token](#log-in-to-the-openshift-cli-with-the-token).
+2. [Log in to the OpenShift CLI with the token for the administrator](#log-in-to-the-openshift-cli-with-the-token).
 3. Execute the following commands to push the image:
 
    ```bash
@@ -309,7 +309,7 @@ You'll see the application home page opened in the browser.
 Instead of using the web console GUI, you can deploy the application from the command-line. If you have not already done so, download and install the `oc` command-line tool by following Red Hat documentation [Getting Started with the CLI](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html).
 
 1. Log in to the OpenShift web console from your browser using the credentials of the administrator.
-2. [Log in to the OpenShift CLI with the token](#log-in-to-the-openshift-cli-with-the-token).
+2. [Log in to the OpenShift CLI with the token the administrator](#log-in-to-the-openshift-cli-with-the-token).
 3. Change directory to `2-simple` of your local clone, and run the following commands to deploy your Liberty application to the ARO 4 cluster.
 
    ```bash
