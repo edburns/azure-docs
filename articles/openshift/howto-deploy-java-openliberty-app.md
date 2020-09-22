@@ -309,7 +309,7 @@ You'll see the application home page opened in the browser.
 Instead of using the web console GUI, you can deploy the application from the command-line. If you have not already done so, download and install the `oc` command-line tool by following Red Hat documentation [Getting Started with the CLI](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html).
 
 1. Log in to the OpenShift web console from your browser using the credentials of the administrator.
-2. [Log in to the OpenShift CLI with the token the administrator](#log-in-to-the-openshift-cli-with-the-token).
+2. [Log in to the OpenShift CLI with the token for the administrator](#log-in-to-the-openshift-cli-with-the-token).
 3. Change directory to `2-simple` of your local clone, and run the following commands to deploy your Liberty application to the ARO 4 cluster.
 
    ```bash
