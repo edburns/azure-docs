@@ -123,6 +123,9 @@ OpenShift Container Platform provides a built-in container image registry which 
    oc policy add-role-to-user registry-editor <aad-user>
    ```
 
+   > [!NOTE]
+   > Write down the console output of **Container Registry URL**. It will be used as the fully qualified registry name for this guide and subsequent ones.
+
 ### Create an administrator for the demo project
 
 Besides image management, the **aad-user** will also be granted administrative permissions for managing resource in the demo project of the ARO 4 cluster.
