@@ -29,7 +29,7 @@ Complete the following prerequisites to successfully walk through this guide.
 3. Install a Java SE implementation (for example, [AdoptOpenJDK OpenJDK 8 LTS/OpenJ9](https://adoptopenjdk.net/?variant=openjdk8&jvmVariant=openj9)).
 4. Install [Maven](https://maven.apache.org/download.cgi) 3.5.0 or higher.
 5. Install [Docker](https://docs.docker.com/get-docker/) for your OS.
-6. Install [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest) 2.0.75 or later.
+6. Install [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest&preserve-view=true) 2.0.75 or later.
 7. Check and install [`envsubst`](https://command-not-found.com/envsubst) if it's not pre-installed in your operating system.
 8. Clone [this repository](https://github.com/Azure-Samples/open-liberty-on-aro) to your local file system.
 
@@ -43,7 +43,7 @@ Follow the instructions in these two tutorials and then return here to continue.
    >
    > If you plan to run memory-intensive applications on the cluster, specify the proper virtual machine size for the worker nodes using the `--worker-vm-size` parameter. For example, `Standard_E4s_v3` is the minimum virtual machine size to install the Elasticsearch Operator on a cluster. Refer to the following for further details:
    >
-   > * [Azure CLI to create a cluster](https://docs.microsoft.com/cli/azure/aro?view=azure-cli-latest#az-aro-create)
+   > * [Azure CLI to create a cluster](https://docs.microsoft.com/cli/azure/aro?view=azure-cli-latest&preserve-view=true#az-aro-create)
    > * [Supported virtual machine sizes for memory optimized](/azure/openshift/support-policies-v4#memory-optimized)
    > * [Prerequisites to install the Elasticsearch Operator](https://docs.openshift.com/container-platform/4.3/logging/cluster-logging-deploying.html#cluster-logging-deploy-eo-cli_cluster-logging-deploying)
 
@@ -60,7 +60,7 @@ Then verify you can log in to the OpenShift CLI with the token for user `kubeadm
 
 Before executing the following steps, be sure to log in to the OpenShift web console from your browser.
 
-1. At the right-top of the web console, expand the context menu of the logged-in user, then click "Copy Login Command".
+1. At the right-top of the web console, expand the context menu of the logged-in user, then select "Copy Login Command".
 2. Log in to a new tab window with the same user if necessary.
 3. Select "Display Token".
 4. Copy the value listed below "Log in with this token" to the clipboard and run it in a shell, as shown here.
@@ -81,7 +81,7 @@ Azure Active Directory (Azure AD) implements OpenID Connect (OIDC), an authentic
 1. [Get an Azure AD tenant](https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant). It is very likely your Azure account already has a tenant. Write down your **tenant ID**.
 2. [Create a few Azure AD users](https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory). You can use these accounts or your own to test the application. Write down email addresses and passwords for login.
 3. [Create a new application registration](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) in your Azure AD tenant. Specify **Redirect URI** to be `https://oauth-openshift.apps.<random>.<region>.aroapp.io/oauth2callback/openid`. The value of **\<random>** and **\<region>** is same as the one from the cluster console URL. Write down the **client ID**.
-4. Create a new client secret. In the newly created application registration, click **Certificates & secrets** > Select **New client secret** > Provide **a description** and hit **Add**. Write down the generated **client secret** value.
+4. Create a new client secret. In the newly created application registration, select **Certificates & secrets** > Select **New client secret** > Provide **a description** and hit **Add**. Write down the generated **client secret** value.
 
 ### Add OpenID Connect identity provider
 
@@ -91,7 +91,7 @@ To access the built-in container image registry provided by the ARO 4 cluster, a
 2. Open **Administration** > **Cluster Settings** > **Global Configuration** > **OAuth** > **Identity Providers** > **Add** > **OpenID Connect**.
 3. Specify **Client ID** and **Client Secret** as the ones you wrote down before. Specify **Name** as **openid**.
 4. Replace **\<tenant-id>** with the one you wrote down before for the URL `https://login.microsoftonline.com/<tenant-id>/v2.0/.well-known/openid-configuration` > Open the URL in your browser > Copy the value of property **issuer** in the returned JSON body and paste it to textbox **Issuer URL**.
-5. Click **Add**.
+5. Select **Add**.
 
 ### Access the built-in container image registry
 
@@ -134,7 +134,7 @@ Besides image management, the **aad-user** will also be granted administrative p
 2. Navigate to **Administration** > **Namespaces** > **Create Namespace**.
 3. Fill in "open-liberty-demo" for **Name** and select **Create**, as shown next.
 
-   ![create-namespace](./media/howto-deploy-java-openliberty-app/create-namespace.png)
+   ![create namespace](./media/howto-deploy-java-openliberty-app/create-namespace.png)
 
 4. [Log in to the OpenShift CLI with the token for `kubeadmin`](#log-in-to-the-openshift-cli-with-the-token).
 5. Execute the following commands to grant `admin` role to the **aad-user** in namespace `open-liberty-demo`.
@@ -157,7 +157,7 @@ After creating and connecting to the cluster, install the [Open Liberty Operator
 4. Select **Install**.
 5. In the popup **Create Operator Subscription**, check **All namespaces on the cluster (default)** for **Installation Mode**, **beta** for **Update Channel**, and **Automatic** for **Approval Strategy**:
 
-   ![install-operator](./media/howto-deploy-java-openliberty-app/install-operator.png)
+   ![create operator subscription for Open Liberty Operator](./media/howto-deploy-java-openliberty-app/install-operator.png)
 6. Select **Subscribe** and wait a minute or two until the Open Liberty Operator is displayed.
 7. Observe the Open Liberty Operator with status of "Succeeded".  If you do not, trouble shoot and resolve the problem before continuing.
 
@@ -227,7 +227,7 @@ To run the application on Open Liberty, you need to create an Open Liberty serve
 
 7. Open [http://localhost:9080/](http://localhost:9080/) in your browser to visit the application home page. The application will look similar to the following:
 
-   ![javaee-cafe-web-ui](./media/howto-deploy-java-openliberty-app/javaee-cafe-web-ui.png)
+   ![JavaEE Cafe Web UI](./media/howto-deploy-java-openliberty-app/javaee-cafe-web-ui.png)
 8. Press **Control-C** to stop the application and Open Liberty server.
 
 The directory `2-simple` of your local clone shows the Maven project with the above changes already applied.
@@ -304,7 +304,7 @@ Because we use the Open Liberty Operator to manage Liberty applications, we need
 4. Select **Create OpenLibertyApplication**
 5. Replace the generated yaml with yours, which is located at `<path-to-repo>/2-simple/openlibertyapplication.yaml`.
 6. Select **Create**.
-7. You'll be returned to the list of OpenLibertyApplications.  Select **javaee-cafe-simple** > **Resources** > **javaee-cafe-simple (Route)** and click the link below **Location**.
+7. You'll be returned to the list of OpenLibertyApplications.  Select **javaee-cafe-simple** > **Resources** > **javaee-cafe-simple (Route)** and select the link below **Location**.
 
 You'll see the application home page opened in the browser.
 
@@ -360,19 +360,9 @@ In this guide, you learned how to:
 >
 > * Prepare the Liberty application
 > * Build the application image
-> * Run the containerized application on an ARO 4 cluster using the GUI and the CLI.
+> * Run the containerized application on an ARO 4 cluster using the GUI and the CLI
 
-Advance to one of the next guides, which integrate Liberty applications with different Azure services:
-> [!div class="nextstepaction"]
-> [Integrate your Liberty application with Elasticsearch stack](howto-integrate-elasticsearch-stack.md)
-
-> [!div class="nextstepaction"]
-> [Integrate your Liberty application with Azure managed databases](howto-integrate-azure-managed-databases.md)
-
-> [!div class="nextstepaction"]
-> [Integrate your Liberty application with Azure Active Directory OpenID Connect](howto-integrate-aad-oidc.md)
-
-Here are references used in this guide:
+You can learn more from references used in this guide:
 
 * [Open Liberty](https://openliberty.io/)
 * [Azure Red Hat OpenShift](https://azure.microsoft.com/services/openshift/)
