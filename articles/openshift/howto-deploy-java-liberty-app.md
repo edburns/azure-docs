@@ -134,7 +134,7 @@ Besides image management, the **aad-user** will also be granted administrative p
 2. Navigate to **Administration** > **Namespaces** > **Create Namespace**.
 3. Fill in "open-liberty-demo" for **Name** and select **Create**, as shown next.
 
-   ![create namespace](./media/howto-deploy-java-openliberty-app/create-namespace.png)
+   ![create namespace](./media/howto-deploy-java-liberty-app/create-namespace.png)
 
 4. [Log in to the OpenShift CLI with the token for `kubeadmin`](#log-in-to-the-openshift-cli-with-the-token).
 5. Execute the following commands to grant `admin` role to the **aad-user** in namespace `open-liberty-demo`.
@@ -157,7 +157,7 @@ After creating and connecting to the cluster, install the [Open Liberty Operator
 4. Select **Install**.
 5. In the popup **Create Operator Subscription**, check **All namespaces on the cluster (default)** for **Installation Mode**, **beta** for **Update Channel**, and **Automatic** for **Approval Strategy**:
 
-   ![create operator subscription for Open Liberty Operator](./media/howto-deploy-java-openliberty-app/install-operator.png)
+   ![create operator subscription for Open Liberty Operator](./media/howto-deploy-java-liberty-app/install-operator.png)
 6. Select **Subscribe** and wait a minute or two until the Open Liberty Operator is displayed.
 7. Observe the Open Liberty Operator with status of "Succeeded".  If you do not, trouble shoot and resolve the problem before continuing.
 
@@ -227,7 +227,7 @@ To run the application on Open Liberty, you need to create an Open Liberty serve
 
 7. Open [http://localhost:9080/](http://localhost:9080/) in your browser to visit the application home page. The application will look similar to the following:
 
-   ![JavaEE Cafe Web UI](./media/howto-deploy-java-openliberty-app/javaee-cafe-web-ui.png)
+   ![JavaEE Cafe Web UI](./media/howto-deploy-java-liberty-app/javaee-cafe-web-ui.png)
 8. Press **Control-C** to stop the application and Open Liberty server.
 
 The directory `2-simple` of your local clone shows the Maven project with the above changes already applied.
@@ -300,7 +300,7 @@ Because we use the Open Liberty Operator to manage Liberty applications, we need
 2. Expand **Home**, Select **Projects** > **open-liberty-demo**.
 3. Navigate to **Operators** > **Installed Operators** > **Open Liberty Operator** > **Open Liberty Application**.  The navigation of items in the user interface mirrors the actual containment hierarchy of technologies in use.
 
-   ![ARO Java Containment](./media/howto-deploy-java-openliberty-app/aro-java-containment.png)
+   ![ARO Java Containment](./media/howto-deploy-java-liberty-app/aro-java-containment.png)
 4. Select **Create OpenLibertyApplication**
 5. Replace the generated yaml with yours, which is located at `<path-to-repo>/2-simple/openlibertyapplication.yaml`.
 6. Select **Create**.
